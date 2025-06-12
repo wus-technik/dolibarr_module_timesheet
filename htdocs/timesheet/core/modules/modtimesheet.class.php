@@ -368,6 +368,7 @@ class modTimesheet extends DolibarrModules
                 // Add here entries to declare new menus
                 //
                 // Example to declare a new Top Menu entry and its Left menu entry:
+	        /**
                 $this->menu[$r]=array('fk_menu' => 0, // Put 0 if this is a top menu
                         'type' => 'top',                                        // This is a Top menu entry
                         'titre' => 'Timesheet',
@@ -394,6 +395,7 @@ class modTimesheet extends DolibarrModules
                         'target' => '',
                         'user' => 2);
                 $r++;
+	         */
                 $this->menu[$r]=array('fk_menu' => 'fk_mainmenu=timesheet', // Put 0 if this is a top menu
                         'type' => 'left',                                        // This is a Top menu entry
                         'titre' => 'Timesheet',
