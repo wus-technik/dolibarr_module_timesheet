@@ -1,0 +1,18 @@
+name: dolibarr_module_timesheet
+id: ari:cloud:compass:29687d12-de2f-40ae-98eb-16a2337c6547:component/27fd418c-f0b4-477c-a1d3-a6f789c15241/d0855bd0-d80d-4942-9988-6e9e3f59f508
+description: Timesheet view for project in Dolibarr
+configVersion: 1
+typeId: LIBRARY
+ownerId: null
+fields:
+  tier: 4
+links:
+  - name: null
+    type: REPOSITORY
+    url: https://github.com/wus-technik/dolibarr_module_timesheet
+relationships:
+  DEPENDS_ON: []
+labels:
+  - language:php
+  - source:github
+customFields: null
