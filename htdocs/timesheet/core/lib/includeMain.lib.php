@@ -21,7 +21,7 @@
 
 
 $res = 0;
-error_reporting(E_ALL);
+
 $currentTimesheetPath = dirname(__FILE__);
 if (! $res && file_exists($currentTimesheetPath."/dev.inc.php")) {
     include $currentTimesheetPath.'/dev.inc.php';
