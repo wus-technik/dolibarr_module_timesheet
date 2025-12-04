@@ -30,6 +30,9 @@ include_once DOL_DOCUMENT_ROOT .'/core/modules/DolibarrModules.class.php';
  */
 class modTimesheet extends DolibarrModules
 {
+	public $special = 0;
+	public $dictionnaries = array();
+	public $menus = array();
         /**
          *   Constructor. Define names, constants, directories, boxes, permissions
          *
@@ -99,7 +102,7 @@ class modTimesheet extends DolibarrModules
                 $this->depends = array('modProjet');                // List of modules id that must be enabled if this module is enabled
                 $this->requiredby = array();        // List of modules id to disable if this one is disabled
                 $this->conflictwith = array();        // List of modules id this module is in conflict with
-                $this->phpmin = array(8, 3);                                        // Minimum version of PHP required by module
+                $this->phpmin = array(8, 2);                                        // Minimum version of PHP required by module
                 $this->need_dolibarr_version = array(22, 0);        // Minimum version of Dolibarr required by module
                 $this->langfiles = array("timesheet@timesheet");
                 // Constants
