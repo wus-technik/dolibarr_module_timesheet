@@ -71,7 +71,7 @@ class modTimesheet extends DolibarrModules
                 // for specific path of parts(eg: /timesheet/core/modules/barcode)
                 // for specific css file(eg: /timesheet/css/timesheet.css.php)
                 $this->module_parts = array('triggers' => 0,
-                                            'css' => array('/timesheet/core/css/timesheet.css'));
+                                            'css' => array('/custom/timesheet/core/css/timesheet.css'));
                 ////$this->module_parts = array(
                 //                         'triggers' => 0,        // Set this to 1 if module has its own trigger directory(core/triggers)
                 //                                                        'login' => 0,        // Set this to 1 if module has its own login method directory(core/login)
