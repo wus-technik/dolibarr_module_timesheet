@@ -40,6 +40,10 @@ class TimesheetReport
     public $lvl1Title;
     public $lvl2Title;
     public $lvl3Title;
+    public $lvl0Link;
+    public $lvl1Link;
+    public $lvl2Link;
+    public $lvl3Link;
     public $lvl0Key;
     public $lvl1Key;
     public $lvl2Key;
@@ -49,6 +53,10 @@ class TimesheetReport
     public $short;
     public $ungroup;
     public $invoicedCol;
+    public $invoiceableOnly = 0;
+    public $taskarray = array();
+    public $error = '';
+    public $errors = array();
     /** constructor
      *
      * @param DATABASE $db db object
