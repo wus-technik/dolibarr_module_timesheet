@@ -26,18 +26,24 @@ $currentTimesheetPath = dirname(__FILE__);
 if (! $res && file_exists($currentTimesheetPath."/dev.inc.php")) {
     include $currentTimesheetPath.'/dev.inc.php';
 }
-//if (! $res && ! empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) $res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
-if (! $res && file_exists($currentTimesheetPath."/../../../main.inc.php")) {
-    $res = @include $currentTimesheetPath.'/../../../main.inc.php';// in HTdocs
-    //$_SERVER["CONTEXT_DOCUMENT_ROOT"] = realpath($currentTimesheetPath."/../../../");
-}
-if (! $res && file_exists($currentTimesheetPath."/../../../../main.inc.php")) {
-    $res = @include $currentTimesheetPath.'/../../../../main.inc.php';//in custom
-    //$_SERVER["CONTEXT_DOCUMENT_ROOT"] = realpath($currentTimesheetPath."/../../../../");
-}
-if (! $res && file_exists($currentTimesheetPath."/../../../../../main.inc.php")) {
-    $res = @include $currentTimesheetPath.'/../../../../../main.inc.php';//in custom
-    //$_SERVER["CONTEXT_DOCUMENT_ROOT"] = realpath($currentTimesheetPath."/../../");
+
+// Support multiple custom module layouts (with and without extra htdocs nesting).
+$mainIncCandidates = array(
+    '/../../../main.inc.php',
+    '/../../../../main.inc.php',
+    '/../../../../../main.inc.php',
+    '/../../../../../../main.inc.php',
+    '/../../../../../../../main.inc.php',
+);
+
+foreach ($mainIncCandidates as $candidate) {
+    if ($res) {
+        break;
+    }
+    $fullPath = $currentTimesheetPath.$candidate;
+    if (file_exists($fullPath)) {
+        $res = @include $fullPath;
+    }
 }
 if (! $res) die("Include of main fails") ;
 
