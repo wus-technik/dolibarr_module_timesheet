@@ -60,6 +60,9 @@ $langs->loadLangs(
 //$toDateyear = GETPOST('toDateyear', 'int');
 $mode = GETPOST('mode', 'alpha');
 $short = GETPOST('short', 'int');
+if (!GETPOSTISSET('short')) {
+    $short = 1;
+}
 $invoicedCol = GETPOST('invoicedcol', 'int');
 $ungroup = GETPOST('ungroup', 'int');
 $model = GETPOST('model', 'alpha');
@@ -68,7 +71,6 @@ if (empty($mode)){
     $ungroup = getConf('TIMESHEET_REPORT_UNGROUP');
     $invoicedCol = getConf('TIMESHEET_REPORT_INVOICED_COL');
 }
-$short = GETPOST('short', 'int');
 $invoicedCol = GETPOST('invoicedcol', 'int');
 $ungroup = GETPOST('ungroup', 'int');
 $show_all = GETPOST('showAll', 'int');
@@ -78,19 +80,24 @@ $year = GETPOST('year', 'int');
 //$month = GETPOST('month', 'int');;//strtotime(str_replace('/', '-', $_POST['Date']));
 //$firstDay = ($month)?strtotime('01-'.$month.'-'. $year):strtotime('first day of previous month');
 //$lastDay = ($month)?strtotime('last day of this month', $firstDay):strtotime('last day of previous month');
-$dateStart = strtotime(GETPOST('startDate', 'alpha'));
+$dateStartInput = GETPOST('startDate', 'alpha');
+$dateStart = strtotime($dateStartInput);
 $dateStartday = GETPOST('startDateday', 'int');// to not look for the date if action not goToDate
 $dateStartmonth = GETPOST('startDatemonth', 'int');
 $dateStartyear = GETPOST('startDateyear', 'int');
 $dateStart = parseDate($dateStartday, $dateStartmonth, $dateStartyear, $dateStart);
-$dateEnd = strtotime(GETPOST('dateEnd', 'alpha'));
+$dateEndInput = GETPOST('dateEnd', 'alpha');
+$dateEnd = strtotime($dateEndInput);
 $dateEndday = GETPOST('dateEndday', 'int');// to not look for the date if action not goToDate
 $dateEndmonth = GETPOST('dateEndmonth', 'int');
 $reporttab = GETPOST('reporttab', 'alpha');
 $dateEndyear = GETPOST('dateEndyear', 'int');
 $dateEnd = parseDate($dateEndday, $dateEndmonth, $dateEndyear, $dateEnd);
 $invoicabletaskOnly = GETPOST('invoicabletaskOnly', 'int');
-if (empty($dateStart) || empty($dateEnd) || empty($userIdSelected)) {
+$noDateProvided = empty($dateStartInput) && empty($dateEndInput)
+    && empty($dateStartday) && empty($dateStartmonth) && empty($dateStartyear)
+    && empty($dateEndday) && empty($dateEndmonth) && empty($dateEndyear);
+if ($noDateProvided || empty($dateStart) || empty($dateEnd) || empty($userIdSelected)) {
     $step = 0;
     $dateStart = strtotime("first day of previous month", time());
     $dateEnd = strtotime("last day of previous month", time());
