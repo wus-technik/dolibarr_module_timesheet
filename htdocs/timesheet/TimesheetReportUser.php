@@ -67,7 +67,7 @@ $invoicedCol = GETPOST('invoicedcol', 'int');
 $ungroup = GETPOST('ungroup', 'int');
 $model = GETPOST('model', 'alpha');
 if (empty($mode)){
-    $mode = 'PTD';
+    $mode = 'DPT';
     $ungroup = getConf('TIMESHEET_REPORT_UNGROUP');
     $invoicedCol = getConf('TIMESHEET_REPORT_INVOICED_COL');
 }
