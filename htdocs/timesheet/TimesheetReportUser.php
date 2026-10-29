@@ -38,8 +38,8 @@ $exportFriendly = GETPOST('exportFriendly', 'alpha');
 if (empty($userIdSelected))$userIdSelected = $userid;
 $exportfriendly = GETPOST('exportfriendly', 'alpha');
 $optioncss = GETPOST('optioncss', 'alpha');
-$admin = $user->admin || $user->rights->timesheet->report->admin || $user->rights->timesheet->timesheet->admin;
-if (!$user->rights->timesheet->report->user && !$admin) {
+$admin = $user->admin || $user->hasRight('timesheet', 'report', 'admin') || $user->hasRight('timesheet', 'timesheet', 'admin');
+if (!$user->hasRight('timesheet', 'report', 'user') && !$admin) {
     $accessforbidden = accessforbidden("You don't have the report user or admin right");
 }
 // Load translation files required by the page
