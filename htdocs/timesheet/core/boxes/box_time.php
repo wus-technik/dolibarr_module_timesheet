@@ -53,8 +53,8 @@ class box_time extends ModeleBoxes
                         'text' => $text,
                         'limit' => dol_strlen($text)
         );
-        $admin = $user->admin || $user->rights->timesheet->timesheet->admin;
-        if ($user->rights->timesheet->timesheet->user ||$admin) {
+        $admin = $user->admin || $user->hasRight('timesheet', 'timesheet', 'admin');
+        if ($user->hasRight('timesheet', 'timesheet', 'user') ||$admin) {
             $sqlweek = '';
             if ($this->db->type!='pgsql') {
                 $sqlweek = " 
