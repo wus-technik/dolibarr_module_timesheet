@@ -73,6 +73,7 @@ class box_approval extends ModeleBoxes
             $sql .= ' WHERE utt.status = '.DRAFT.' AND utt.fk_userid= '.$userid;
             $result = $db->query($sql);
             if ($result) {
+                $nbPrj = $nbTm = $nbUsr = 0;
                 $num = $db->num_rows($result);
                 while($num>0)
                 {
