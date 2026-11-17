@@ -111,7 +111,7 @@ class box_time extends ModeleBoxes
                 }
                 $i=0;
                 // create the sums
-                $max_delta = max($delta);
+                $max_delta = empty($delta) ? 0 : max($delta);
                 $sum_delta = array_sum($delta);
                 if ($max_delta > 0){
                     $this->info_box_contents[$i][] = array(
