@@ -49,9 +49,10 @@ if (empty($mode)){
     $ungroup = getConf('TIMESHEET_REPORT_UNGROUP');
     $invoicedCol = getConf('TIMESHEET_REPORT_INVOICED_COL');
 }
-$admin = $user->rights->projet->all->lire || $user->rights->projet->all->creer
-    || $user->rights->timesheet->report->admin;
-    if (!$user->rights->timesheet->report->project && !$admin) {
+// hasRight() statt rights->…: ohne Recht keine Warnung "property on null" (Sentry DOLIBARR-5R9)
+$admin = $user->hasRight("projet", "all", "lire") || $user->hasRight("projet", "all", "creer")
+    || $user->hasRight("timesheet", "report", "admin");
+    if (!$user->hasRight("timesheet", "report", "project") && !$admin) {
         $accessforbidden = accessforbidden("You don't have the report projet or admin right");
     }
 
